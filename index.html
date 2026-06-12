@@ -1,199 +1,508 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mijn Portfolio</title>
-
-<style>
-:root {
-    --primary: #20E9BD;
-    --primary-dark: #0FB39A;
-    --primary-light: #6BF0D4;
-    --accent-purple: #BD20E9;
-    --bg-dark: #1A1A1A;
-    --text-light: #e8e8e8;
-    --text-fade: #cfd8cf;
-    --header-bg: rgba(26, 29, 24, 0.9);
-    --hover-bg: rgba(32, 233, 189, 0.2);
-    --shadow-glow: 0 10px 30px rgba(32, 233, 189, 0.3);
-    --shadow-soft: 0 5px 20px rgba(0,0,0,0.3);
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body{
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: linear-gradient(180deg, #0a1e1a 0%, #1a2f2a 50%, var(--primary-dark) 100%);
-    color: var(--text-light);
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-}
-
-header{
-    background: var(--header-bg);
-    backdrop-filter: blur(10px);
-    padding: 20px 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 1px solid rgba(32,233,189,0.2);
-    box-shadow: var(--shadow-soft);
-}
-
-nav {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-header a{
-    color: var(--text-light);
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 500;
-    padding: 12px 24px;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-header a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background: var(--primary);
-    transition: all 0.3s ease;
-    transform: translateX(-50%);
-}
-
-header a:hover::after {
-    width: 80%;
-}
-
-header a:hover{
-    background: var(--hover-bg);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(32,233,189,0.4);
-}
-
-.hero{
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 60px 40px;
-    position: relative;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 30% 70%, rgba(32,233,189,0.15) 0%, transparent 50%),
-                radial-gradient(circle at 70% 20%, rgba(189,32,233,0.1) 0%, transparent 50%);
-    pointer-events: none;
-    animation: shimmer 6s ease-in-out infinite;
-}
-
-@keyframes shimmer {
-    0%, 100% { opacity: 0.6; }
-    50% { opacity: 1; }
-}
-
-.hero h1{
-    font-size: clamp(42px, 8vw, 68px);
-    font-weight: 700;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
-    background: linear-gradient(135deg, var(--primary), var(--accent-purple));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: fadeInUp 1s ease-out;
-    text-shadow: var(--shadow-glow);
-}
-
-.hero p{
-    font-size: clamp(18px, 4vw, 24px);
-    color: var(--text-fade);
-    max-width: 700px;
-    line-height: 1.7;
-    margin-bottom: 40px;
-    animation: fadeInUp 1s ease-out 0.2s both;
-}
-
-.cta-btn {
-    display: inline-block;
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    color: var(--bg-dark);
-    padding: 18px 40px;
-    font-size: 20px;
-    font-weight: 600;
-    border-radius: 50px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: var(--shadow-glow);
-    animation: fadeInUp 1s ease-out 0.4s both;
-}
-
-.cta-btn:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 15px 40px rgba(32,233,189,0.5);
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio van Jayheshya — ICT Student & Muzikant. Bekijk mijn opdrachten, projecten en muzikale werk.">
+  <title>Jayheshya — Portfolio</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* ---- HERO ---- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 0 var(--space-xl);
+      position: relative;
+      overflow: hidden;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
 
-/* Responsive */
-@media (max-width: 768px) {
-    nav { gap: 20px; }
-    header a { 
-        font-size: 16px; 
-        padding: 10px 16px; 
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
     }
-}
-</style>
+
+    .hero-blob {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(121,242,216,0.06) 0%, transparent 70%);
+      top: -100px;
+      right: -100px;
+      animation: blob-drift 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes blob-drift {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(-30px, 30px) scale(1.05); }
+    }
+
+    .hero-inner {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-3xl);
+      align-items: center;
+      padding-top: 64px;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: var(--space-lg);
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: var(--space-lg);
+      color: var(--text-primary);
+    }
+
+    .hero-name .cursor {
+      display: inline-block;
+      color: var(--accent);
+      animation: blink 1.1s step-end infinite;
+      margin-left: 2px;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+
+    .hero-role {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-lg);
+      letter-spacing: -0.02em;
+    }
+
+    .hero-role .divider {
+      color: var(--border);
+      margin: 0 0.5em;
+    }
+
+    .hero-desc {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      max-width: 480px;
+      margin-bottom: var(--space-xl);
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .hero-avatar {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: var(--bg-surface);
+      border: 2px solid var(--border);
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .hero-avatar::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 50%;
+      background: conic-gradient(var(--accent) 0deg, transparent 120deg, transparent 360deg);
+      z-index: -1;
+      animation: spin 6s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .avatar-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 3rem;
+    }
+
+    /* ---- ABOUT STRIP ---- */
+    .about-strip {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: var(--space-xl);
+    }
+
+    .about-strip-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .strip-item {
+      background: var(--bg-base);
+      padding: var(--space-xl) var(--space-lg);
+      text-align: center;
+    }
+
+    .strip-icon {
+      font-size: 1.4rem;
+      color: var(--accent);
+      margin-bottom: var(--space-md);
+    }
+
+    .strip-label {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: var(--space-xs);
+    }
+
+    .strip-desc {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    /* ---- CTA CARDS ---- */
+    .cta-section {
+      padding: var(--space-3xl) var(--space-xl);
+    }
+
+    .cta-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .cta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+      margin-top: var(--space-xl);
+    }
+
+    .cta-card {
+      position: relative;
+      border-radius: var(--radius-xl);
+      padding: var(--space-xl);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: all 300ms var(--ease);
+      cursor: pointer;
+      display: block;
+    }
+
+    .cta-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    .cta-card--ict {
+      background: var(--bg-surface);
+    }
+
+    .cta-card--ict:hover {
+      border-color: rgba(121, 242, 216, 0.25);
+    }
+
+    .cta-card--music {
+      background: linear-gradient(135deg, #0f1f1c 0%, var(--bg-surface) 100%);
+      border-color: rgba(121, 242, 216, 0.15);
+    }
+
+    .cta-card--music:hover {
+      border-color: rgba(121, 242, 216, 0.5);
+      box-shadow: 0 20px 60px rgba(121, 242, 216, 0.08);
+    }
+
+    .cta-card-bg-icon {
+      position: absolute;
+      right: var(--space-xl);
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 6rem;
+      opacity: 0.04;
+      pointer-events: none;
+    }
+
+    .cta-card--music .cta-card-bg-icon {
+      opacity: 0.07;
+      color: var(--accent);
+    }
+
+    .cta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-md);
+    }
+
+    .cta-card--ict .cta-pill {
+      background: rgba(255,255,255,0.06);
+      color: var(--text-secondary);
+    }
+
+    .cta-card--music .cta-pill {
+      background: var(--accent-dim);
+      color: var(--accent);
+    }
+
+    .cta-card-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: var(--space-sm);
+    }
+
+    .cta-card--music .cta-card-title {
+      color: var(--accent);
+    }
+
+    .cta-card-desc {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: var(--space-lg);
+      max-width: 320px;
+    }
+
+    .cta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      transition: all var(--transition);
+    }
+
+    .cta-card--ict:hover .cta-link {
+      color: var(--accent);
+    }
+
+    .cta-card--music .cta-link {
+      color: var(--accent);
+    }
+
+    /* ---- RESPONSIVE OVERRIDES ---- */
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 80px;
+      }
+      .hero-avatar { margin: 0 auto; }
+      .hero-eyebrow { justify-content: center; }
+      .hero-desc { margin: 0 auto var(--space-xl); }
+      .hero-actions { justify-content: center; }
+      .cta-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .about-strip-inner { grid-template-columns: 1fr; }
+      .hero { padding: 0 var(--space-md); }
+      .cta-section { padding: var(--space-2xl) var(--space-md); }
+    }
+  </style>
 </head>
-
 <body>
 
-<header>
-    <nav>
-        <a href="projecten.html">Projecten</a>
-        <a href="vaardigheden.html">Vaardigheden</a>
-        <a href="overmij.html">Over mij</a>
-    </nav>
-</header>
+  <!-- NAVIGATION -->
+  <nav class="nav" role="navigation" aria-label="Hoofdnavigatie">
+    <a href="index.html" class="nav-logo">Jay<span>.</span></a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="over-mij.html">Over mij</a></li>
+      <li><a href="ict/index.html">ICT Portfolio</a></li>
+      <li><a href="muziek/index.html">Muzikant Portfolio</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="nav-theme-btn" aria-label="Wissel thema">
+      <i class="fa-solid fa-moon"></i>
+    </button>
+    <button class="nav-mobile-btn" aria-label="Menu openen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-<section class="hero">
-    <h1>Mijn Portfolio</h1>
-    <p>Software developer in opleiding. Ik bouw gebruiksvriendelijke digitale oplossingen met passie voor structuur en design.</p>
-    <a href="projecten.html" class="cta-btn">Bekijk mijn werk</a>
-</section>
+  <!-- HERO -->
+  <section class="hero" aria-label="Introductie">
+    <div class="hero-bg">
+      <div class="hero-blob"></div>
+    </div>
+    <div class="hero-inner">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Portfolio</p>
+        <h1 class="hero-name">
+          <span id="hero-name-text"></span><span class="cursor">|</span>
+        </h1>
+        <p class="hero-role">
+          ICT Student<span class="divider">/</span>Muzikant
+        </p>
+        <p class="hero-desc">
+          Welkom op mijn portfolio. Hier vind je een overzicht van mijn ICT-opdrachten 
+          en mijn muzikale projecten als artiest.
+        </p>
+        <div class="hero-actions">
+          <a href="ict/index.html" class="btn btn-primary">
+            <i class="fa-solid fa-code"></i> ICT Portfolio
+          </a>
+          <a href="muziek/index.html" class="btn btn-outline">
+            <i class="fa-solid fa-music"></i> Muzikant Portfolio
+          </a>
+        </div>
+      </div>
+      <div class="hero-avatar" aria-hidden="true">
+        <div class="avatar-placeholder">
+          <i class="fa-solid fa-user"></i>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- ABOUT STRIP -->
+  <div class="about-strip" aria-label="Over mij — samenvatting">
+    <div class="about-strip-inner">
+      <div class="strip-item">
+        <div class="strip-icon"><i class="fa-solid fa-code"></i></div>
+        <p class="strip-label">Passie voor ICT</p>
+        <p class="strip-desc">Ik bouw graag websites, apps en digitale oplossingen.</p>
+      </div>
+      <div class="strip-item">
+        <div class="strip-icon"><i class="fa-solid fa-music"></i></div>
+        <p class="strip-label">Muzikant</p>
+        <p class="strip-desc">Ik maak muziek en treedt op als artiest Jayheshya.</p>
+      </div>
+      <div class="strip-item">
+        <div class="strip-icon"><i class="fa-solid fa-lightbulb"></i></div>
+        <p class="strip-label">Leergierig</p>
+        <p class="strip-desc">Altijd bezig met leren en mezelf verbeteren.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA SECTION -->
+  <section class="cta-section" aria-label="Naar de portfolio's">
+    <div class="cta-inner">
+      <p class="section-label">Verken</p>
+      <h2 class="section-title">Twee werelden, één portfolio</h2>
+      <p class="section-sub">Kies welk gedeelte je wilt bekijken — mijn ICT-opdrachten of mijn muzikale werk.</p>
+
+      <div class="cta-grid">
+        <!-- ICT -->
+        <a href="ict/index.html" class="cta-card cta-card--ict">
+          <i class="fa-solid fa-laptop-code cta-card-bg-icon"></i>
+          <span class="cta-pill"><i class="fa-solid fa-circle" style="font-size:0.4rem"></i> ICT</span>
+          <h3 class="cta-card-title">ICT Portfolio</h3>
+          <p class="cta-card-desc">
+            Opdrachten en projecten uit mijn ICT-opleiding. Van webdevelopment tot 
+            UX-design en databases.
+          </p>
+          <span class="cta-link">
+            Bekijk projecten <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </a>
+
+        <!-- MUZIEK -->
+        <a href="muziek/index.html" class="cta-card cta-card--music">
+          <i class="fa-solid fa-headphones cta-card-bg-icon"></i>
+          <span class="cta-pill"><i class="fa-solid fa-circle" style="font-size:0.4rem"></i> Muzikant</span>
+          <h3 class="cta-card-title">Jayheshya</h3>
+          <p class="cta-card-desc">
+            Mijn muzikale wereld — opnames, optredens, samenwerkingen 
+            en alles wat ik als artiest heb gemaakt.
+          </p>
+          <span class="cta-link">
+            Bekijk muziek <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer">
+      <p class="footer-copy">© 2025 Jayheshya. Alle rechten voorbehouden.</p>
+      <nav class="footer-links" aria-label="Footer navigatie">
+        <a href="over-mij.html">Over mij</a>
+        <a href="contact.html">Contact</a>
+        <a href="ict/index.html">ICT</a>
+        <a href="muziek/index.html">Muziek</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    // Typewriter effect for hero name
+    const nameEl = document.getElementById('hero-name-text');
+    const fullName = 'Jayheshya';
+    let i = 0;
+    function type() {
+      if (i <= fullName.length) {
+        nameEl.textContent = fullName.slice(0, i);
+        i++;
+        setTimeout(type, i === 1 ? 500 : 90);
+      }
+    }
+    type();
+
+    // Mobile menu
+    const mobileBtn = document.querySelector('.nav-mobile-btn');
+    const navLinks  = document.querySelector('.nav-links');
+    mobileBtn.addEventListener('click', () => {
+      const open = mobileBtn.getAttribute('aria-expanded') === 'true';
+      mobileBtn.setAttribute('aria-expanded', String(!open));
+      navLinks.style.display = open ? '' : 'flex';
+      navLinks.style.flexDirection = 'column';
+      navLinks.style.position = 'fixed';
+      navLinks.style.top = '64px';
+      navLinks.style.left = '0';
+      navLinks.style.right = '0';
+      navLinks.style.background = 'var(--bg-base)';
+      navLinks.style.padding = '1.5rem';
+      navLinks.style.borderBottom = '1px solid var(--border)';
+      if (open) navLinks.removeAttribute('style');
+    });
+  </script>
 </body>
 </html>

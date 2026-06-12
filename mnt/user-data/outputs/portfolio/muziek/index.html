@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Muzikant Portfolio van Jayheshya — opnames, optredens en samenwerkingen.">
+  <title>Muzikant Portfolio — Jayheshya</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .music-hero {
+      padding-top: calc(64px + var(--space-3xl));
+      padding-bottom: var(--space-xl);
+      padding-left: var(--space-xl);
+      padding-right: var(--space-xl);
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* Subtle glow behind the header */
+    .music-hero::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 40vh;
+      background: radial-gradient(ellipse at 60% 0%, rgba(121,242,216,0.07) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .music-hero > * { position: relative; z-index: 1; }
+
+    .music-hero .section-label { color: var(--accent); }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-xl);
+      padding-bottom: var(--space-xl);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .toolbar .filters { flex: 1; }
+
+    /* Music cards have a slightly different accent */
+    .music-card .card-arrow {
+      border-color: rgba(121,242,216,0.2);
+    }
+
+    .music-card:hover {
+      border-color: rgba(121,242,216,0.5) !important;
+      box-shadow: 0 12px 40px rgba(121,242,216,0.07) !important;
+    }
+
+    .music-card:hover .card-arrow {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    .music-icon {
+      position: absolute;
+      bottom: var(--space-md);
+      right: var(--space-md);
+      color: var(--accent);
+      opacity: 0.5;
+      font-size: 1rem;
+    }
+
+    .card-thumb-placeholder.music {
+      background: linear-gradient(135deg, #0f1f1c, #141414);
+      color: var(--accent);
+      opacity: 0.7;
+    }
+
+    .project-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--space-xl) var(--space-3xl);
+    }
+
+    .card-date {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .no-results {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: var(--space-3xl);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    /* Accent filter pills for music */
+    .filter-pill.active {
+      background: var(--accent-dim);
+      color: var(--accent);
+      border-color: rgba(121,242,216,0.3);
+    }
+
+    @media (max-width: 700px) {
+      .music-hero, .project-grid { padding-left: var(--space-md); padding-right: var(--space-md); }
+      .toolbar { flex-direction: column; align-items: stretch; }
+      .search-wrap { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" role="navigation" aria-label="Hoofdnavigatie">
+    <a href="../index.html" class="nav-logo">Jay<span>.</span></a>
+    <ul class="nav-links" role="list">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../over-mij.html">Over mij</a></li>
+      <li><a href="../ict/index.html">ICT Portfolio</a></li>
+      <li><a href="index.html" class="active">Muzikant Portfolio</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+    <button class="nav-theme-btn" aria-label="Wissel thema"><i class="fa-solid fa-moon"></i></button>
+    <button class="nav-mobile-btn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </nav>
+
+  <header class="music-hero">
+    <p class="section-label">Artiest</p>
+    <h1 class="section-title">Mijn Muzikale Projecten</h1>
+    <p class="section-sub">Een overzicht van mijn muziek, optredens en samenwerkingen als Jayheshya.</p>
+  </header>
+
+  <div class="project-grid">
+    <div class="toolbar">
+      <div class="filters" role="group" aria-label="Filter op type">
+        <button class="filter-pill active" data-filter="all">Alle</button>
+        <button class="filter-pill" data-filter="opname">Opnames</button>
+        <button class="filter-pill" data-filter="optreden">Optredens</button>
+        <button class="filter-pill" data-filter="samenwerking">Samenwerkingen</button>
+        <button class="filter-pill" data-filter="overig">Overig</button>
+      </div>
+      <div class="search-wrap">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="search" class="search-input" placeholder="Zoek project..." aria-label="Zoek muziekproject">
+      </div>
+    </div>
+
+    <div class="grid-3" id="music-grid">
+
+      <article class="card music-card" data-tags="opname" data-title="Eerste Single">
+        <div class="card-thumb">
+          <div class="card-thumb-placeholder music"><i class="fa-solid fa-microphone-lines"></i></div>
+        </div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="tag tag-accent">Opname</span>
+            <span class="tag">2024</span>
+          </div>
+          <h2 class="card-title">Eerste Single</h2>
+          <p class="card-desc">Mijn eerste officiële single — productie, opname en release.</p>
+          <div class="card-footer">
+            <span class="card-date">2024</span>
+            <a href="project.html" class="card-arrow" aria-label="Bekijk project: Eerste Single">
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+          <i class="fa-solid fa-music music-icon"></i>
+        </div>
+      </article>
+
+      <article class="card music-card" data-tags="optreden" data-title="Live Optreden">
+        <div class="card-thumb">
+          <div class="card-thumb-placeholder music"><i class="fa-solid fa-person-walking-with-cane"></i></div>
+        </div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="tag tag-accent">Optreden</span>
+            <span class="tag">2024</span>
+          </div>
+          <h2 class="card-title">Live Optreden</h2>
+          <p class="card-desc">Optreden op een lokaal evenement — setlist, voorbereiding en ervaring.</p>
+          <div class="card-footer">
+            <span class="card-date">2024</span>
+            <a href="project.html" class="card-arrow" aria-label="Bekijk project: Live Optreden">
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+          <i class="fa-solid fa-music music-icon"></i>
+        </div>
+      </article>
+
+      <article class="card music-card" data-tags="samenwerking" data-title="Samenwerking">
+        <div class="card-thumb">
+          <div class="card-thumb-placeholder music"><i class="fa-solid fa-handshake"></i></div>
+        </div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="tag tag-accent">Samenwerking</span>
+            <span class="tag">2024</span>
+          </div>
+          <h2 class="card-title">Samenwerking</h2>
+          <p class="card-desc">Track in samenwerking met een andere artiest — van concept tot release.</p>
+          <div class="card-footer">
+            <span class="card-date">2024</span>
+            <a href="project.html" class="card-arrow" aria-label="Bekijk project: Samenwerking">
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+          <i class="fa-solid fa-music music-icon"></i>
+        </div>
+      </article>
+
+      <article class="card music-card" data-tags="opname" data-title="EP Project">
+        <div class="card-thumb">
+          <div class="card-thumb-placeholder music"><i class="fa-solid fa-compact-disc"></i></div>
+        </div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="tag tag-accent">Opname</span>
+            <span class="tag">2025</span>
+          </div>
+          <h2 class="card-title">EP Project</h2>
+          <p class="card-desc">Werken aan een mini-album — composities, arrangementen en productie.</p>
+          <div class="card-footer">
+            <span class="card-date">2025</span>
+            <a href="project.html" class="card-arrow" aria-label="Bekijk project: EP Project">
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+          <i class="fa-solid fa-music music-icon"></i>
+        </div>
+      </article>
+
+      <article class="card music-card" data-tags="optreden" data-title="Schooloptreden">
+        <div class="card-thumb">
+          <div class="card-thumb-placeholder music"><i class="fa-solid fa-star"></i></div>
+        </div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="tag tag-accent">Optreden</span>
+            <span class="tag">2025</span>
+          </div>
+          <h2 class="card-title">Schooloptreden</h2>
+          <p class="card-desc">Optreden op school — eigen nummers en covers voor een live publiek.</p>
+          <div class="card-footer">
+            <span class="card-date">2025</span>
+            <a href="project.html" class="card-arrow" aria-label="Bekijk project: Schooloptreden">
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+          <i class="fa-solid fa-music music-icon"></i>
+        </div>
+      </article>
+
+      <article class="card music-card" data-tags="overig" data-title="Muziekvideo">
+        <div class="card-thumb">
+          <div class="card-thumb-placeholder music"><i class="fa-solid fa-film"></i></div>
+        </div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="tag tag-accent">Overig</span>
+            <span class="tag">2025</span>
+          </div>
+          <h2 class="card-title">Muziekvideo</h2>
+          <p class="card-desc">Concept en productie van een muziekvideo voor een van mijn nummers.</p>
+          <div class="card-footer">
+            <span class="card-date">2025</span>
+            <a href="project.html" class="card-arrow" aria-label="Bekijk project: Muziekvideo">
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+          <i class="fa-solid fa-music music-icon"></i>
+        </div>
+      </article>
+
+      <p class="no-results" id="no-results">Geen projecten gevonden voor deze zoekopdracht.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer">
+      <p class="footer-copy">© 2025 Jayheshya</p>
+      <nav class="footer-links">
+        <a href="../index.html">Home</a>
+        <a href="../ict/index.html">ICT Portfolio</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    const pills  = document.querySelectorAll('.filter-pill');
+    const cards  = document.querySelectorAll('#music-grid .card');
+    const search = document.querySelector('.search-input');
+    const noRes  = document.getElementById('no-results');
+    let activeFilter = 'all';
+
+    function applyFilters() {
+      const query = search.value.toLowerCase();
+      let visible = 0;
+      cards.forEach(card => {
+        const tags  = card.dataset.tags || '';
+        const title = (card.dataset.title || '').toLowerCase();
+        const matchFilter = activeFilter === 'all' || tags.includes(activeFilter);
+        const matchSearch = !query || title.includes(query) || tags.includes(query);
+        card.style.display = matchFilter && matchSearch ? '' : 'none';
+        if (matchFilter && matchSearch) visible++;
+      });
+      noRes.style.display = visible === 0 ? 'block' : 'none';
+    }
+
+    pills.forEach(p => p.addEventListener('click', () => {
+      pills.forEach(x => x.classList.remove('active'));
+      p.classList.add('active');
+      activeFilter = p.dataset.filter;
+      applyFilters();
+    }));
+
+    search.addEventListener('input', applyFilters);
+
+    const btn = document.querySelector('.nav-mobile-btn');
+    const nav = document.querySelector('.nav-links');
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      if (!open) {
+        Object.assign(nav.style, { display:'flex', flexDirection:'column', position:'fixed',
+          top:'64px', left:'0', right:'0', background:'var(--bg-base)',
+          padding:'1.5rem', borderBottom:'1px solid var(--border)' });
+      } else { nav.removeAttribute('style'); }
+    });
+  </script>
+</body>
+</html>
