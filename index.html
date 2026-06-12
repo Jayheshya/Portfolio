@@ -6,80 +6,193 @@
 <title>Mijn Portfolio</title>
 
 <style>
-
-body{
-    margin:0;
-    font-family: "Segoe UI", Arial, sans-serif;
-    background:
-        linear-gradient(180deg, #1b2a1f 0%, #243c2a 100%);
-    color:#e8e8e8;
+:root {
+    --primary: #20E9BD;
+    --primary-dark: #0FB39A;
+    --primary-light: #6BF0D4;
+    --accent-purple: #BD20E9;
+    --bg-dark: #1A1A1A;
+    --text-light: #e8e8e8;
+    --text-fade: #cfd8cf;
+    --header-bg: rgba(26, 29, 24, 0.9);
+    --hover-bg: rgba(32, 233, 189, 0.2);
+    --shadow-glow: 0 10px 30px rgba(32, 233, 189, 0.3);
+    --shadow-soft: 0 5px 20px rgba(0,0,0,0.3);
 }
 
-/* HEADER */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(180deg, #0a1e1a 0%, #1a2f2a 50%, var(--primary-dark) 100%);
+    color: var(--text-light);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
 
 header{
-    background:rgba(0,0,0,0.35);
-    backdrop-filter: blur(6px);
-    padding:22px;
-    display:flex;
-    justify-content:center;
-    gap:40px;
-    border-bottom:1px solid rgba(255,255,255,0.08);
+    background: var(--header-bg);
+    backdrop-filter: blur(10px);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(32,233,189,0.2);
+    box-shadow: var(--shadow-soft);
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 header a{
-    color:#e6e6e6;
-    text-decoration:none;
-    font-size:18px;
-    padding:10px 22px;
-    border-radius:8px;
-    transition:0.25s;
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 12px 24px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+header a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+header a:hover::after {
+    width: 80%;
 }
 
 header a:hover{
-    background:#4f7a55;
+    background: var(--hover-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(32,233,189,0.4);
 }
 
-/* HERO */
-
 .hero{
-    height:75vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    text-align:center;
-    padding:40px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 40px;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 70%, rgba(32,233,189,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 20%, rgba(189,32,233,0.1) 0%, transparent 50%);
+    pointer-events: none;
+    animation: shimmer 6s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
 }
 
 .hero h1{
-    font-size:52px;
-    font-weight:600;
-    margin-bottom:12px;
-    letter-spacing:1px;
+    font-size: clamp(42px, 8vw, 68px);
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, var(--primary), var(--accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeInUp 1s ease-out;
+    text-shadow: var(--shadow-glow);
 }
 
 .hero p{
-    font-size:20px;
-    color:#cfd8cf;
-    max-width:600px;
-    line-height:1.6;
+    font-size: clamp(18px, 4vw, 24px);
+    color: var(--text-fade);
+    max-width: 700px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+    animation: fadeInUp 1s ease-out 0.2s both;
 }
 
+.cta-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: var(--bg-dark);
+    padding: 18px 40px;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-glow);
+    animation: fadeInUp 1s ease-out 0.4s both;
+}
+
+.cta-btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(32,233,189,0.5);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    nav { gap: 20px; }
+    header a { 
+        font-size: 16px; 
+        padding: 10px 16px; 
+    }
+}
 </style>
 </head>
 
 <body>
 
 <header>
-    <a href="projecten.html">Projecten</a>
-    <a href="vaardigheden.html">Vaardigheden</a>
-    <a href="overmij.html">Over mij</a>
+    <nav>
+        <a href="projecten.html">Projecten</a>
+        <a href="vaardigheden.html">Vaardigheden</a>
+        <a href="overmij.html">Over mij</a>
+    </nav>
 </header>
 
 <section class="hero">
     <h1>Mijn Portfolio</h1>
-    <p>Software developer in opleiding</p>
+    <p>Software developer in opleiding. Ik bouw gebruiksvriendelijke digitale oplossingen met passie voor structuur en design.</p>
+    <a href="projecten.html" class="cta-btn">Bekijk mijn werk</a>
 </section>
 
 </body>
