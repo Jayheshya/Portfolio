@@ -55,7 +55,7 @@ const opdrachten = [
   // --- Bedrijfsproject (DP10) ---
   {
     titel: "ZIVRA Revalidatie Dashboard",
-    semester: "Cyclus 5 • DP10",
+    semester: "Cyclus 4 • DP10",
     categorie: "Webdevelopment",
     tags: [
       "UX/UI",
