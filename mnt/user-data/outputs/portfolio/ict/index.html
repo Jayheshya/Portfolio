@@ -3,12 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="ICT Portfolio van Jayheshya — opdrachten en projecten uit mijn opleiding.">
+  <meta name="description" content="ICT Portfolio van Jayheshya">
   <title>ICT Portfolio — Jayheshya</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    .ict-hero {
+    .page-top {
       padding-top: calc(64px + var(--space-3xl));
       padding-bottom: var(--space-xl);
       padding-left: var(--space-xl);
@@ -16,7 +18,6 @@
       max-width: 1200px;
       margin: 0 auto;
     }
-
     .toolbar {
       display: flex;
       align-items: center;
@@ -26,32 +27,48 @@
       padding-bottom: var(--space-xl);
       border-bottom: 1px solid var(--border);
     }
-
     .toolbar .filters { flex: 1; }
-
     .project-grid {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 var(--space-xl) var(--space-3xl);
     }
-
     .card-date {
       font-family: var(--font-mono);
       font-size: 0.7rem;
       color: var(--text-muted);
     }
-
+    .card-arrow {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all var(--transition);
+    }
+    .card:hover .card-arrow {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-dim);
+    }
     .no-results {
-      grid-column: 1 / -1;
+      grid-column: 1/-1;
       text-align: center;
       padding: var(--space-3xl);
       color: var(--text-muted);
       font-size: 0.9rem;
       display: none;
     }
-
+    .thumb-icon {
+      font-size: 2.5rem;
+      color: var(--text-muted);
+    }
     @media (max-width: 700px) {
-      .ict-hero, .project-grid { padding-left: var(--space-md); padding-right: var(--space-md); }
+      .page-top, .project-grid { padding-left: var(--space-md); padding-right: var(--space-md); }
       .toolbar { flex-direction: column; align-items: stretch; }
       .search-wrap { max-width: 100%; }
     }
@@ -59,29 +76,29 @@
 </head>
 <body>
 
-  <nav class="nav" role="navigation" aria-label="Hoofdnavigatie">
+  <nav class="nav">
     <a href="../index.html" class="nav-logo">Jay<span>.</span></a>
-    <ul class="nav-links" role="list">
+    <ul class="nav-links">
       <li><a href="../index.html">Home</a></li>
       <li><a href="../over-mij.html">Over mij</a></li>
       <li><a href="index.html" class="active">ICT Portfolio</a></li>
       <li><a href="../muziek/index.html">Muzikant Portfolio</a></li>
       <li><a href="../contact.html">Contact</a></li>
     </ul>
-    <button class="nav-theme-btn" aria-label="Wissel thema"><i class="fa-solid fa-moon"></i></button>
-    <button class="nav-mobile-btn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <button class="nav-mobile-btn" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 
-  <header class="ict-hero">
+  <header class="page-top">
     <p class="section-label">ICT Opleiding</p>
     <h1 class="section-title">Mijn ICT Projecten</h1>
     <p class="section-sub">Een overzicht van alle opdrachten en projecten die ik dit jaar heb gemaakt.</p>
   </header>
 
   <div class="project-grid">
-    <!-- TOOLBAR -->
     <div class="toolbar">
-      <div class="filters" role="group" aria-label="Filter op technologie">
+      <div class="filters">
         <button class="filter-pill active" data-filter="all">Alle</button>
         <button class="filter-pill" data-filter="html-css">HTML/CSS</button>
         <button class="filter-pill" data-filter="javascript">JavaScript</button>
@@ -90,143 +107,122 @@
         <button class="filter-pill" data-filter="overig">Overig</button>
       </div>
       <div class="search-wrap">
-        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <span class="search-icon">&#128269;</span>
         <input type="search" class="search-input" placeholder="Zoek project..." aria-label="Zoek project">
       </div>
     </div>
 
-    <!-- CARDS GRID -->
     <div class="grid-3" id="ict-grid">
 
       <article class="card" data-tags="html-css javascript" data-title="Portfolio Website">
         <div class="card-thumb">
-          <div class="card-thumb-placeholder"><i class="fa-solid fa-globe"></i></div>
+          <div class="card-thumb-placeholder"><span class="thumb-icon">&#127760;</span></div>
         </div>
         <div class="card-body">
           <div class="card-tags">
-            <span class="tag">HTML</span>
-            <span class="tag">CSS</span>
-            <span class="tag">JS</span>
+            <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span>
           </div>
           <h2 class="card-title">Portfolio Website</h2>
           <p class="card-desc">Ontwerp en bouw van een persoonlijke portfolio-website als eindopdracht.</p>
           <div class="card-footer">
             <span class="card-date">2024–2025</span>
-            <a href="opdracht.html" class="card-arrow" aria-label="Bekijk project: Portfolio Website">
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
+            <a href="opdracht.html" class="card-arrow" aria-label="Bekijk project">&#8594;</a>
           </div>
         </div>
       </article>
 
       <article class="card" data-tags="databases" data-title="Database Ontwerp">
         <div class="card-thumb">
-          <div class="card-thumb-placeholder"><i class="fa-solid fa-database"></i></div>
+          <div class="card-thumb-placeholder"><span class="thumb-icon">&#128190;</span></div>
         </div>
         <div class="card-body">
           <div class="card-tags">
-            <span class="tag">SQL</span>
-            <span class="tag">ERD</span>
+            <span class="tag">SQL</span><span class="tag">ERD</span>
           </div>
           <h2 class="card-title">Database Ontwerp</h2>
           <p class="card-desc">Ontwerpen van een relationele database met ERD en SQL-queries.</p>
           <div class="card-footer">
             <span class="card-date">2024–2025</span>
-            <a href="opdracht.html" class="card-arrow" aria-label="Bekijk project: Database Ontwerp">
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
+            <a href="opdracht.html" class="card-arrow" aria-label="Bekijk project">&#8594;</a>
           </div>
         </div>
       </article>
 
       <article class="card" data-tags="ui-ux" data-title="UX Onderzoek">
         <div class="card-thumb">
-          <div class="card-thumb-placeholder"><i class="fa-solid fa-pen-ruler"></i></div>
+          <div class="card-thumb-placeholder"><span class="thumb-icon">&#128396;</span></div>
         </div>
         <div class="card-body">
           <div class="card-tags">
-            <span class="tag">Figma</span>
-            <span class="tag">UI/UX</span>
+            <span class="tag">Figma</span><span class="tag">UI/UX</span>
           </div>
           <h2 class="card-title">UX Onderzoek</h2>
           <p class="card-desc">Gebruikersonderzoek en wireframing voor een mobiele applicatie.</p>
           <div class="card-footer">
             <span class="card-date">2024–2025</span>
-            <a href="opdracht.html" class="card-arrow" aria-label="Bekijk project: UX Onderzoek">
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
+            <a href="opdracht.html" class="card-arrow" aria-label="Bekijk project">&#8594;</a>
           </div>
         </div>
       </article>
 
       <article class="card" data-tags="javascript" data-title="Interactieve Webapplicatie">
         <div class="card-thumb">
-          <div class="card-thumb-placeholder"><i class="fa-brands fa-js"></i></div>
+          <div class="card-thumb-placeholder"><span class="thumb-icon">&#9889;</span></div>
         </div>
         <div class="card-body">
           <div class="card-tags">
-            <span class="tag">JS</span>
-            <span class="tag">API</span>
-            <span class="tag">CSS</span>
+            <span class="tag">JS</span><span class="tag">API</span><span class="tag">CSS</span>
           </div>
           <h2 class="card-title">Interactieve Webapplicatie</h2>
           <p class="card-desc">Bouwen van een dynamische applicatie met externe API-koppeling.</p>
           <div class="card-footer">
             <span class="card-date">2024–2025</span>
-            <a href="opdracht.html" class="card-arrow" aria-label="Bekijk project: Interactieve Webapplicatie">
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
+            <a href="opdracht.html" class="card-arrow" aria-label="Bekijk project">&#8594;</a>
           </div>
         </div>
       </article>
 
       <article class="card" data-tags="html-css" data-title="Responsive Lay-out">
         <div class="card-thumb">
-          <div class="card-thumb-placeholder"><i class="fa-solid fa-mobile-screen"></i></div>
+          <div class="card-thumb-placeholder"><span class="thumb-icon">&#128241;</span></div>
         </div>
         <div class="card-body">
           <div class="card-tags">
-            <span class="tag">HTML</span>
-            <span class="tag">CSS</span>
+            <span class="tag">HTML</span><span class="tag">CSS</span>
           </div>
           <h2 class="card-title">Responsive Lay-out</h2>
           <p class="card-desc">Implementatie van een volledig responsieve pagina met CSS Grid en Flexbox.</p>
           <div class="card-footer">
             <span class="card-date">2024–2025</span>
-            <a href="opdracht.html" class="card-arrow" aria-label="Bekijk project: Responsive Lay-out">
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
+            <a href="opdracht.html" class="card-arrow" aria-label="Bekijk project">&#8594;</a>
           </div>
         </div>
       </article>
 
       <article class="card" data-tags="overig" data-title="Projectmanagement">
         <div class="card-thumb">
-          <div class="card-thumb-placeholder"><i class="fa-solid fa-diagram-project"></i></div>
+          <div class="card-thumb-placeholder"><span class="thumb-icon">&#128203;</span></div>
         </div>
         <div class="card-body">
           <div class="card-tags">
-            <span class="tag">Scrum</span>
-            <span class="tag">Overig</span>
+            <span class="tag">Scrum</span><span class="tag">Overig</span>
           </div>
           <h2 class="card-title">Projectmanagement</h2>
           <p class="card-desc">Teamopdracht waarbij we een project plannen en uitvoeren met Scrum.</p>
           <div class="card-footer">
             <span class="card-date">2024–2025</span>
-            <a href="opdracht.html" class="card-arrow" aria-label="Bekijk project: Projectmanagement">
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
+            <a href="opdracht.html" class="card-arrow" aria-label="Bekijk project">&#8594;</a>
           </div>
         </div>
       </article>
 
-      <p class="no-results" id="no-results">Geen projecten gevonden voor deze zoekopdracht.</p>
+      <p class="no-results" id="no-results">Geen projecten gevonden.</p>
     </div>
   </div>
 
   <footer>
     <div class="footer">
-      <p class="footer-copy">© 2025 Jayheshya</p>
+      <p class="footer-copy">&#169; 2025 Jayheshya</p>
       <nav class="footer-links">
         <a href="../index.html">Home</a>
         <a href="../muziek/index.html">Muzikant Portfolio</a>
@@ -236,47 +232,32 @@
   </footer>
 
   <script>
-    // Filter logic
-    const pills   = document.querySelectorAll('.filter-pill');
-    const cards   = document.querySelectorAll('#ict-grid .card');
-    const search  = document.querySelector('.search-input');
-    const noRes   = document.getElementById('no-results');
+    const pills = document.querySelectorAll('.filter-pill');
+    const cards = document.querySelectorAll('#ict-grid .card');
+    const search = document.querySelector('.search-input');
+    const noRes = document.getElementById('no-results');
+    let active = 'all';
 
-    let activeFilter = 'all';
-
-    function applyFilters() {
-      const query = search.value.toLowerCase();
-      let visible = 0;
-
-      cards.forEach(card => {
-        const tags  = card.dataset.tags || '';
-        const title = (card.dataset.title || '').toLowerCase();
-        const matchFilter = activeFilter === 'all' || tags.includes(activeFilter);
-        const matchSearch = !query || title.includes(query) || tags.includes(query);
-
-        if (matchFilter && matchSearch) {
-          card.style.display = '';
-          visible++;
-        } else {
-          card.style.display = 'none';
-        }
+    function apply() {
+      const q = search.value.toLowerCase();
+      let n = 0;
+      cards.forEach(c => {
+        const match = (active === 'all' || c.dataset.tags.includes(active)) &&
+                      (!q || c.dataset.title.toLowerCase().includes(q) || c.dataset.tags.includes(q));
+        c.style.display = match ? '' : 'none';
+        if (match) n++;
       });
-
-      noRes.style.display = visible === 0 ? 'block' : 'none';
+      noRes.style.display = n === 0 ? 'block' : 'none';
     }
 
-    pills.forEach(pill => {
-      pill.addEventListener('click', () => {
-        pills.forEach(p => p.classList.remove('active'));
-        pill.classList.add('active');
-        activeFilter = pill.dataset.filter;
-        applyFilters();
-      });
-    });
+    pills.forEach(p => p.addEventListener('click', () => {
+      pills.forEach(x => x.classList.remove('active'));
+      p.classList.add('active');
+      active = p.dataset.filter;
+      apply();
+    }));
+    search.addEventListener('input', apply);
 
-    search.addEventListener('input', applyFilters);
-
-    // Mobile nav
     const btn = document.querySelector('.nav-mobile-btn');
     const nav = document.querySelector('.nav-links');
     btn.addEventListener('click', () => {
@@ -285,10 +266,8 @@
       if (!open) {
         Object.assign(nav.style, { display:'flex', flexDirection:'column', position:'fixed',
           top:'64px', left:'0', right:'0', background:'var(--bg-base)',
-          padding:'1.5rem', borderBottom:'1px solid var(--border)' });
-      } else {
-        nav.removeAttribute('style');
-      }
+          padding:'1.5rem', borderBottom:'1px solid var(--border)', zIndex:'99' });
+      } else { nav.removeAttribute('style'); }
     });
   </script>
 </body>
